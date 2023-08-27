@@ -11,7 +11,7 @@ export const SESSION_COOKIE_OPTIONS = {
   httpOnly: isProd,
   secure: isProd,
   signed: true,
-  maxAge: 60 * 60,
+  maxAge: 3600, // 1 hour, @TODO: change this to be an admnin setting value
 };
 export const SESSION_COOKIE_NAME = cookieName('counclSess');
 
@@ -28,3 +28,5 @@ export const sendWithSessionCookie = (
     .status(status ? status : payload.statusCode || 200)
     .setCookie(SESSION_COOKIE_NAME, 'fooValue', SESSION_COOKIE_OPTIONS)
     .send(payload);
+
+export const isUserSignedIn = (sessionId: string | null) => Boolean(sessionId);

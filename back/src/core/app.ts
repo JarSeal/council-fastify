@@ -50,6 +50,10 @@ const initApp = async (): Promise<FastifyInstance> => {
     },
   });
 
+  // Decorate session
+  // Type definitions are at src/@types/index.d.ts
+  app.decorateRequest('session', null);
+
   // Database
   await initDB(app);
 
